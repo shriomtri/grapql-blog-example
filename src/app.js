@@ -27,9 +27,9 @@ function initServer() {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
 
-  const bookRouter = require('./modules/book/routes');
+  const graphQl = require('./modules/graphql/routes');
 
-  app.use('/book', bookRouter);
+  app.use('/', graphQl);
 
   app.use((req, res, next) => {
     next(createError(404));
