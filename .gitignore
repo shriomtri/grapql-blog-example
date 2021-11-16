@@ -1,7 +1,7 @@
 node_modules/
 .vscode/
 /**/.DS_Store
-/**/.env
+# /**/.env
 .idea/
 web/src/dist/
 web/src/.cache/
