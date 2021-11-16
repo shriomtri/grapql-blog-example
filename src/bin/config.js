@@ -3,7 +3,7 @@ require('dotenv').config()
 const config = {
   local: {
     server: {
-      port: 8080,
+      port: process.env.PORT,
       hostName: "0.0.0.0",
     },
 
