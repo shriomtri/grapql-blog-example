@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:local": "cross-env NODE_ENV=local nodemon --inspect=13001 ./src/bin/www"
+    "start:local": "cross-env NODE_ENV=local nodemon --inspect=13001 ./src/bin/www",
+    "start": "cross-env NODE_ENV=local node --inspect=13001 ./src/bin/www"
   },
   "keywords": [],
   "author": "",
