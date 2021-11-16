@@ -9,7 +9,7 @@ const config = {
 
   database: {
     mongodb: {
-      url: encodeURI(process.env.MGDB_CONNECTION_URL)
+      url: process.env.MGDB_CONNECTION_URL
     }
   }
   },

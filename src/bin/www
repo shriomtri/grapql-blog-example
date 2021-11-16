@@ -14,12 +14,12 @@ const { connectDatabase } = require('../utils');
 (async function (){
   try {
     console.log('starting server ... ')
+    await connectDatabase(config.database.mongodb.url)
+
     initServer();
     app.set('port', config.server.port);
     app.set('hostname', config.server.hostName);
     
-    await connectDatabase(config.database.mongodb.url)
-
     const server = http.createServer(app);
     server.on('error', (err) => {
       console.log(`error start server ${err}`)

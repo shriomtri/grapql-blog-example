@@ -29,7 +29,7 @@ function initServer() {
 
   const graphQl = require('./modules/graphql/routes');
 
-  app.use('/', graphQl);
+  app.use('/api/graphql', graphQl);
 
   app.use((req, res, next) => {
     next(createError(404));
