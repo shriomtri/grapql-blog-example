@@ -14,9 +14,9 @@ const { connectDatabase } = require('../utils');
 (async function (){
   try {
     console.log('starting server ... ')
-    await connectDatabase(config.database.mongodb.url)
+    const { connectionDbs } = await connectDatabase(config.database.mongodb.url)
 
-    initServer();
+    initServer(connectionDbs);
     app.set('port', config.server.port);
     app.set('hostname', config.server.hostName);
     

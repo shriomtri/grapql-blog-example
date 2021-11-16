@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 
 const app  = express();
 
-function initServer() {
+function initServer(connectedDbs) {
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
@@ -29,7 +29,7 @@ function initServer() {
 
   const graphQl = require('./modules/graphql/routes');
 
-  app.use('/api/graphql', graphQl);
+  app.use('/api/graphql', graphQl(connectedDbs));
 
   app.use((req, res, next) => {
     next(createError(404));

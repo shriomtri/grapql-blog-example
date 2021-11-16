@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const mdb = require("mongodb")
+const { MongoClient } = require("mongodb")
+let connectionDbs = {}
 
 async function connectDatabase(url, name = 'keetabi') {
-  const client = new mdb.MongoClient(url, {
+  const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -10,8 +10,9 @@ async function connectDatabase(url, name = 'keetabi') {
   try {
     await client.connect();
     const mdb = client.db();
-
-    // Test the connection
+    connectionDbs.db = mdb;
+    
+    // Test connection
     const collections = await mdb.collections();
     console.log(
       'Connected to MongoDB | Collections count:',
@@ -19,7 +20,7 @@ async function connectDatabase(url, name = 'keetabi') {
     );
 
     return {
-      mdb,
+      connectionDbs,
       mdbClose: () => client.close(),
     };
   } catch (err) {
@@ -27,19 +28,6 @@ async function connectDatabase(url, name = 'keetabi') {
     process.exit(1);
   }
 
-
-  // new Promise(resolve, reject)
-  // console.log('checking db connection');
-  // let conn;
-  // let connString = encodeURI(url);
-  // console.log(connString)
-  // const client = new MongoClient(connString, { useNewUrlParser: true, useUnifiedTopology: true });
-  // await client.connect();
-  // connectedDbs[name] = client.db('test');
-  // console.log( `db connected: ${connectedDbs}`);
 }
 
-module.exports = { mdb }
-
-
-module.exports = {  connectDatabase };
+module.exports = { connectionDbs, connectDatabase }
